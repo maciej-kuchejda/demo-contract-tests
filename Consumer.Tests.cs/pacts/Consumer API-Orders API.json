@@ -1,0 +1,191 @@
+{
+  "consumer": {
+    "name": "Consumer API"
+  },
+  "interactions": [
+    {
+      "description": "a request for an order with an unknown ID",
+      "request": {
+        "headers": {
+          "Accept": "application/json"
+        },
+        "method": "GET",
+        "path": "/api/orders/404"
+      },
+      "response": {
+        "status": 404
+      }
+    },
+    {
+      "description": "a request for all orders",
+      "providerStates": [
+        {
+          "name": "an order with ID {id} exists",
+          "params": {
+            "id": 123
+          }
+        }
+      ],
+      "request": {
+        "headers": {
+          "Accept": "application/json"
+        },
+        "method": "GET",
+        "path": "/api/orders"
+      },
+      "response": {
+        "body": [
+          {
+            "creationDate": "2024-01-13T10:48:26.5843783+01:00",
+            "id": 123,
+            "name": "Test 123",
+            "status": 0
+          }
+        ],
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$[0].creationDate": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$[0].id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            },
+            "$[0].name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "equality"
+                }
+              ]
+            },
+            "$[0].status": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "equality"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "a request for an order by ID",
+      "providerStates": [
+        {
+          "name": "an order with ID {id} exists",
+          "params": {
+            "id": 1
+          }
+        }
+      ],
+      "request": {
+        "headers": {
+          "Accept": "application/json"
+        },
+        "method": "GET",
+        "path": "/api/orders/1"
+      },
+      "response": {
+        "body": {
+          "creationDate": "2024-01-13T10:48:26.8207425+01:00",
+          "id": 1,
+          "name": "Test 1",
+          "status": 0
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$.creationDate": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            },
+            "$.name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "equality"
+                }
+              ]
+            },
+            "$.status": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "equality"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "a update for an order by ID",
+      "providerStates": [
+        {
+          "name": "an order with ID {id} exists",
+          "params": {
+            "id": 2
+          }
+        }
+      ],
+      "request": {
+        "body": {
+          "status": 1
+        },
+        "headers": {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        "method": "PUT",
+        "path": "/api/orders/2"
+      },
+      "response": {
+        "status": 202
+      }
+    }
+  ],
+  "metadata": {
+    "pactRust": {
+      "ffi": "0.4.0",
+      "models": "1.0.4"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "Orders API"
+  }
+}

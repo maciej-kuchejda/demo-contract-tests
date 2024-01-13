@@ -1,0 +1,209 @@
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://localhost:9001
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: C:\repos\demo-contract-tests\Provider.Tests\bin\Debug\net6.0
+Starting verification...
+Pact verification successful
+
+Verifier Output
+---------------
+
+Verifying a pact between Consumer API and Orders API
+
+  a request for an order with an unknown ID
+    returns a response which
+      has status code 404 (OK)
+      has a matching body (OK)
+
+  a request for all orders
+     Given an order with ID {id} exists
+    returns a response which
+      has status code 200 (OK)
+      includes headers
+        "Content-Type" with value "application/json" (OK)
+      has a matching body (OK)
+
+  a request for an order by ID
+     Given an order with ID {id} exists
+    returns a response which
+      has status code 200 (OK)
+      includes headers
+        "Content-Type" with value "application/json" (OK)
+      has a matching body (OK)
+
+  a update for an order by ID
+     Given an order with ID {id} exists
+    returns a response which
+      has status code 202 (OK)
+      has a matching body (OK)
+
+
+Verifier Logs
+-------------
+2024-01-13T09:48:58.394784Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order with an unknown ID"}: pact_verifier: Executing provider states
+2024-01-13T09:48:58.394813Z  INFO ThreadId(01) verify_interaction{interaction="a request for an order with an unknown ID"}: pact_verifier: Running setup provider state change handler with empty state for 'a request for an order with an unknown ID'
+2024-01-13T09:48:58.398988Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order with an unknown ID"}: pact_verifier::provider_client: Sending HTTP Request ( method: POST, path: /, query: None, headers: Some({"Content-Type": ["application/json"]}), body: Present(41 bytes, application/json) ) to state change handler
+2024-01-13T09:48:58.399174Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order with an unknown ID"}: reqwest::connect: starting new connection: http://localhost:9001/    
+2024-01-13T09:48:58.402342Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order with an unknown ID"}: hyper::client::connect::http: connecting to [::1]:9001
+2024-01-13T09:48:58.402758Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order with an unknown ID"}: hyper::client::connect::http: connected to [::1]:9001
+2024-01-13T09:48:58.451053Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order with an unknown ID"}: hyper::client::pool: pooling idle connection for ("http", localhost:9001)
+2024-01-13T09:48:58.451093Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order with an unknown ID"}: pact_verifier::provider_client: State change request: Response { url: Url { scheme: "http", cannot_be_a_base: false, username: "", password: None, host: Some(Domain("localhost")), port: Some(9001), path: "/provider-states", query: None, fragment: None }, status: 200, headers: {"content-length": "0", "date": "Sat, 13 Jan 2024 09:48:58 GMT", "server": "Kestrel"} }
+2024-01-13T09:48:58.451171Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order with an unknown ID"}: pact_verifier: State Change: "ProviderState { name: "", params: {} }" -> Ok({})
+2024-01-13T09:48:58.451189Z  INFO ThreadId(01) verify_interaction{interaction="a request for an order with an unknown ID"}: pact_verifier: Running provider verification for 'a request for an order with an unknown ID'
+2024-01-13T09:48:58.451226Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order with an unknown ID"}: pact_verifier: Verifying a HTTP interaction
+2024-01-13T09:48:58.451269Z  INFO ThreadId(01) verify_interaction{interaction="a request for an order with an unknown ID"}: pact_verifier::provider_client: Sending request to provider at http://localhost:9001/
+2024-01-13T09:48:58.451271Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order with an unknown ID"}: pact_verifier::provider_client: Provider details = ProviderInfo { name: "Orders API", protocol: "http", host: "localhost", port: Some(9001), path: "/", transports: [ProviderTransport { transport: "http", port: Some(9001), path: Some("/"), scheme: None }] }
+2024-01-13T09:48:58.451284Z  INFO ThreadId(01) verify_interaction{interaction="a request for an order with an unknown ID"}: pact_verifier::provider_client: Sending request HTTP Request ( method: GET, path: /api/orders/404, query: None, headers: Some({"Accept": ["application/json"]}), body: Missing )
+2024-01-13T09:48:58.451287Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order with an unknown ID"}: pact_verifier::provider_client: body:
+
+2024-01-13T09:48:58.451319Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order with an unknown ID"}: hyper::client::pool: reuse idle connection for ("http", localhost:9001)
+2024-01-13T09:48:58.501042Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order with an unknown ID"}: pact_verifier::provider_client: Received native response: Response { url: Url { scheme: "http", cannot_be_a_base: false, username: "", password: None, host: Some(Domain("localhost")), port: Some(9001), path: "/api/orders/404", query: None, fragment: None }, status: 404, headers: {"content-type": "application/problem+json; charset=utf-8", "date": "Sat, 13 Jan 2024 09:48:58 GMT", "server": "Kestrel", "transfer-encoding": "chunked"} }
+2024-01-13T09:48:58.501204Z  INFO ThreadId(01) verify_interaction{interaction="a request for an order with an unknown ID"}: pact_verifier::provider_client: Received response: HTTP Response ( status: 404, headers: Some({"date": ["Sat", "13 Jan 2024 09:48:58 GMT"], "transfer-encoding": ["chunked"], "content-type": ["application/problem+json; charset=utf-8"], "server": ["Kestrel"]}), body: Present(161 bytes, application/problem+json;charset=utf-8) )
+2024-01-13T09:48:58.501216Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order with an unknown ID"}: pact_verifier::provider_client: body:
+{"type":"https://tools.ietf.org/html/rfc7231#section-6.5.4","title":"Not Found","status":404,"traceId":"00-33450f91dc74319c075140fa0e297bee-56bb51de5df4efc1-00"}
+2024-01-13T09:48:58.501235Z  INFO ThreadId(01) verify_interaction{interaction="a request for an order with an unknown ID"}: pact_matching: comparing to expected response: HTTP Response ( status: 404, headers: None, body: Missing )
+2024-01-13T09:48:58.501258Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order with an unknown ID"}: pact_matching: expected content type = '*/*', actual content type = 'application/problem+json;charset=utf-8'
+2024-01-13T09:48:58.501526Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order with an unknown ID"}: pact_matching: content type header matcher = 'RuleList { rules: [], rule_logic: And, cascaded: false }'
+2024-01-13T09:48:58.506138Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_verifier: Executing provider states
+2024-01-13T09:48:58.506154Z  INFO ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_verifier: Running setup provider state change handler 'an order with ID {id} exists' for 'a request for all orders'
+2024-01-13T09:48:58.510773Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_verifier::provider_client: Sending HTTP Request ( method: POST, path: /, query: None, headers: Some({"Content-Type": ["application/json"]}), body: Present(77 bytes, application/json) ) to state change handler
+2024-01-13T09:48:58.510820Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: reqwest::connect: starting new connection: http://localhost:9001/    
+2024-01-13T09:48:58.511216Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: hyper::client::connect::http: connecting to [::1]:9001
+2024-01-13T09:48:58.511510Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: hyper::client::connect::http: connected to [::1]:9001
+2024-01-13T09:48:58.513996Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: hyper::client::pool: pooling idle connection for ("http", localhost:9001)
+2024-01-13T09:48:58.514020Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_verifier::provider_client: State change request: Response { url: Url { scheme: "http", cannot_be_a_base: false, username: "", password: None, host: Some(Domain("localhost")), port: Some(9001), path: "/provider-states", query: None, fragment: None }, status: 200, headers: {"content-length": "0", "date": "Sat, 13 Jan 2024 09:48:58 GMT", "server": "Kestrel"} }
+2024-01-13T09:48:58.514058Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_verifier: State Change: "ProviderState { name: "an order with ID {id} exists", params: {"id": Number(123)} }" -> Ok({})
+2024-01-13T09:48:58.514071Z  INFO ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_verifier: Running provider verification for 'a request for all orders'
+2024-01-13T09:48:58.514103Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_verifier: Verifying a HTTP interaction
+2024-01-13T09:48:58.514128Z  INFO ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_verifier::provider_client: Sending request to provider at http://localhost:9001/
+2024-01-13T09:48:58.514130Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_verifier::provider_client: Provider details = ProviderInfo { name: "Orders API", protocol: "http", host: "localhost", port: Some(9001), path: "/", transports: [ProviderTransport { transport: "http", port: Some(9001), path: Some("/"), scheme: None }] }
+2024-01-13T09:48:58.514134Z  INFO ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_verifier::provider_client: Sending request HTTP Request ( method: GET, path: /api/orders, query: None, headers: Some({"Accept": ["application/json"]}), body: Missing )
+2024-01-13T09:48:58.514137Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_verifier::provider_client: body:
+
+2024-01-13T09:48:58.514155Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: hyper::client::pool: reuse idle connection for ("http", localhost:9001)
+2024-01-13T09:48:58.528272Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_verifier::provider_client: Received native response: Response { url: Url { scheme: "http", cannot_be_a_base: false, username: "", password: None, host: Some(Domain("localhost")), port: Some(9001), path: "/api/orders", query: None, fragment: None }, status: 200, headers: {"content-type": "application/json; charset=utf-8", "date": "Sat, 13 Jan 2024 09:48:58 GMT", "server": "Kestrel", "transfer-encoding": "chunked"} }
+2024-01-13T09:48:58.528410Z  INFO ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_verifier::provider_client: Received response: HTTP Response ( status: 200, headers: Some({"server": ["Kestrel"], "content-type": ["application/json; charset=utf-8"], "transfer-encoding": ["chunked"], "date": ["Sat", "13 Jan 2024 09:48:58 GMT"]}), body: Present(92 bytes, application/json;charset=utf-8) )
+2024-01-13T09:48:58.528422Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_verifier::provider_client: body:
+[{"id":123,"name":"Test 123","creationDate":"2024-01-13T10:48:58.5129143+01:00","status":0}]
+2024-01-13T09:48:58.528444Z  INFO ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_matching: comparing to expected response: HTTP Response ( status: 200, headers: Some({"Content-Type": ["application/json"]}), body: Present(92 bytes) )
+2024-01-13T09:48:58.528486Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_matching: expected content type = 'application/json', actual content type = 'application/json;charset=utf-8'
+2024-01-13T09:48:58.528496Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_matching: content type header matcher = 'RuleList { rules: [], rule_logic: And, cascaded: false }'
+2024-01-13T09:48:58.528506Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_plugin_driver::catalogue_manager: Looking for a content matcher for application/json
+2024-01-13T09:48:58.528816Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_matching: No content matcher defined for content type 'application/json', using core matcher implementation
+2024-01-13T09:48:58.528831Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_matching: Using body matcher for content type 'application/json'
+2024-01-13T09:48:58.528859Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_matching::json: compare: Comparing path $
+2024-01-13T09:48:58.528869Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_matching::json: Comparing list item 0 with value 'Some(Object {"creationDate": String("2024-01-13T10:48:58.5129143+01:00"), "id": Number(123), "name": String("Test 123"), "status": Number(0)})' to 'Object {"creationDate": String("2024-01-13T10:48:26.5843783+01:00"), "id": Number(123), "name": String("Test 123"), "status": Number(0)}'
+2024-01-13T09:48:58.528880Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_matching::json: compare: Comparing path $[0]
+2024-01-13T09:48:58.528882Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_matching::json: compare_maps: Comparing maps at $[0]: {"creationDate": String("2024-01-13T10:48:26.5843783+01:00"), "id": Number(123), "name": String("Test 123"), "status": Number(0)} -> {"creationDate": String("2024-01-13T10:48:58.5129143+01:00"), "id": Number(123), "name": String("Test 123"), "status": Number(0)}
+2024-01-13T09:48:58.528935Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_matching::json: compare: Comparing path $[0].creationDate
+2024-01-13T09:48:58.528949Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_matching::json: compare_values: Calling match_values for path $[0].creationDate
+2024-01-13T09:48:58.528960Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_matching::json: JSON -> JSON: Comparing '"2024-01-13T10:48:26.5843783+01:00"' to '"2024-01-13T10:48:58.5129143+01:00"' using Type -> Ok(())
+2024-01-13T09:48:58.528972Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_matching::json: compare_values: Comparing 'String("2024-01-13T10:48:26.5843783+01:00")' to 'String("2024-01-13T10:48:58.5129143+01:00")' at path '$[0].creationDate' -> Ok(())
+2024-01-13T09:48:58.528976Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_matching::json: compare: Comparing path $[0].id
+2024-01-13T09:48:58.528979Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_matching::json: compare_values: Calling match_values for path $[0].id
+2024-01-13T09:48:58.528982Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_matching::json: JSON -> JSON: Comparing '123' to '123' using Integer -> Ok(())
+2024-01-13T09:48:58.528984Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_matching::json: compare_values: Comparing 'Number(123)' to 'Number(123)' at path '$[0].id' -> Ok(())
+2024-01-13T09:48:58.528986Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_matching::json: compare: Comparing path $[0].name
+2024-01-13T09:48:58.528989Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_matching::json: compare_values: Calling match_values for path $[0].name
+2024-01-13T09:48:58.528991Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_matching::json: JSON -> JSON: Comparing '"Test 123"' to '"Test 123"' using Equality -> Ok(())
+2024-01-13T09:48:58.528992Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_matching::json: compare_values: Comparing 'String("Test 123")' to 'String("Test 123")' at path '$[0].name' -> Ok(())
+2024-01-13T09:48:58.528995Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_matching::json: compare: Comparing path $[0].status
+2024-01-13T09:48:58.528997Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_matching::json: compare_values: Calling match_values for path $[0].status
+2024-01-13T09:48:58.528999Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_matching::json: JSON -> JSON: Comparing '0' to '0' using Equality -> Ok(())
+2024-01-13T09:48:58.529001Z DEBUG ThreadId(01) verify_interaction{interaction="a request for all orders"}: pact_matching::json: compare_values: Comparing 'Number(0)' to 'Number(0)' at path '$[0].status' -> Ok(())
+2024-01-13T09:48:58.533505Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_verifier: Executing provider states
+2024-01-13T09:48:58.533515Z  INFO ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_verifier: Running setup provider state change handler 'an order with ID {id} exists' for 'a request for an order by ID'
+2024-01-13T09:48:58.537667Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_verifier::provider_client: Sending HTTP Request ( method: POST, path: /, query: None, headers: Some({"Content-Type": ["application/json"]}), body: Present(75 bytes, application/json) ) to state change handler
+2024-01-13T09:48:58.537703Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: reqwest::connect: starting new connection: http://localhost:9001/    
+2024-01-13T09:48:58.538102Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: hyper::client::connect::http: connecting to [::1]:9001
+2024-01-13T09:48:58.538344Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: hyper::client::connect::http: connected to [::1]:9001
+2024-01-13T09:48:58.539052Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: hyper::client::pool: pooling idle connection for ("http", localhost:9001)
+2024-01-13T09:48:58.539073Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_verifier::provider_client: State change request: Response { url: Url { scheme: "http", cannot_be_a_base: false, username: "", password: None, host: Some(Domain("localhost")), port: Some(9001), path: "/provider-states", query: None, fragment: None }, status: 200, headers: {"content-length": "0", "date": "Sat, 13 Jan 2024 09:48:58 GMT", "server": "Kestrel"} }
+2024-01-13T09:48:58.539125Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_verifier: State Change: "ProviderState { name: "an order with ID {id} exists", params: {"id": Number(1)} }" -> Ok({})
+2024-01-13T09:48:58.539132Z  INFO ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_verifier: Running provider verification for 'a request for an order by ID'
+2024-01-13T09:48:58.539151Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_verifier: Verifying a HTTP interaction
+2024-01-13T09:48:58.539183Z  INFO ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_verifier::provider_client: Sending request to provider at http://localhost:9001/
+2024-01-13T09:48:58.539185Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_verifier::provider_client: Provider details = ProviderInfo { name: "Orders API", protocol: "http", host: "localhost", port: Some(9001), path: "/", transports: [ProviderTransport { transport: "http", port: Some(9001), path: Some("/"), scheme: None }] }
+2024-01-13T09:48:58.539190Z  INFO ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_verifier::provider_client: Sending request HTTP Request ( method: GET, path: /api/orders/1, query: None, headers: Some({"Accept": ["application/json"]}), body: Missing )
+2024-01-13T09:48:58.539193Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_verifier::provider_client: body:
+
+2024-01-13T09:48:58.539214Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: hyper::client::pool: reuse idle connection for ("http", localhost:9001)
+2024-01-13T09:48:58.540188Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_verifier::provider_client: Received native response: Response { url: Url { scheme: "http", cannot_be_a_base: false, username: "", password: None, host: Some(Domain("localhost")), port: Some(9001), path: "/api/orders/1", query: None, fragment: None }, status: 200, headers: {"content-type": "application/json; charset=utf-8", "date": "Sat, 13 Jan 2024 09:48:58 GMT", "server": "Kestrel", "transfer-encoding": "chunked"} }
+2024-01-13T09:48:58.540271Z  INFO ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_verifier::provider_client: Received response: HTTP Response ( status: 200, headers: Some({"content-type": ["application/json; charset=utf-8"], "date": ["Sat", "13 Jan 2024 09:48:58 GMT"], "server": ["Kestrel"], "transfer-encoding": ["chunked"]}), body: Present(86 bytes, application/json;charset=utf-8) )
+2024-01-13T09:48:58.540281Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_verifier::provider_client: body:
+{"id":1,"name":"Test 1","creationDate":"2024-01-13T10:48:58.5388436+01:00","status":0}
+2024-01-13T09:48:58.540302Z  INFO ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_matching: comparing to expected response: HTTP Response ( status: 200, headers: Some({"Content-Type": ["application/json"]}), body: Present(86 bytes) )
+2024-01-13T09:48:58.540315Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_matching: expected content type = 'application/json', actual content type = 'application/json;charset=utf-8'
+2024-01-13T09:48:58.540325Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_matching: content type header matcher = 'RuleList { rules: [], rule_logic: And, cascaded: false }'
+2024-01-13T09:48:58.540330Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_plugin_driver::catalogue_manager: Looking for a content matcher for application/json
+2024-01-13T09:48:58.540667Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_matching: No content matcher defined for content type 'application/json', using core matcher implementation
+2024-01-13T09:48:58.540672Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_matching: Using body matcher for content type 'application/json'
+2024-01-13T09:48:58.540681Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_matching::json: compare: Comparing path $
+2024-01-13T09:48:58.540683Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_matching::json: compare_maps: Comparing maps at $: {"creationDate": String("2024-01-13T10:48:26.8207425+01:00"), "id": Number(1), "name": String("Test 1"), "status": Number(0)} -> {"creationDate": String("2024-01-13T10:48:58.5388436+01:00"), "id": Number(1), "name": String("Test 1"), "status": Number(0)}
+2024-01-13T09:48:58.540702Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_matching::json: compare: Comparing path $.creationDate
+2024-01-13T09:48:58.540714Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_matching::json: compare_values: Calling match_values for path $.creationDate
+2024-01-13T09:48:58.540718Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_matching::json: JSON -> JSON: Comparing '"2024-01-13T10:48:26.8207425+01:00"' to '"2024-01-13T10:48:58.5388436+01:00"' using Type -> Ok(())
+2024-01-13T09:48:58.540721Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_matching::json: compare_values: Comparing 'String("2024-01-13T10:48:26.8207425+01:00")' to 'String("2024-01-13T10:48:58.5388436+01:00")' at path '$.creationDate' -> Ok(())
+2024-01-13T09:48:58.540725Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_matching::json: compare: Comparing path $.id
+2024-01-13T09:48:58.540727Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_matching::json: compare_values: Calling match_values for path $.id
+2024-01-13T09:48:58.540729Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_matching::json: JSON -> JSON: Comparing '1' to '1' using Integer -> Ok(())
+2024-01-13T09:48:58.540731Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_matching::json: compare_values: Comparing 'Number(1)' to 'Number(1)' at path '$.id' -> Ok(())
+2024-01-13T09:48:58.540733Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_matching::json: compare: Comparing path $.name
+2024-01-13T09:48:58.540735Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_matching::json: compare_values: Calling match_values for path $.name
+2024-01-13T09:48:58.540737Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_matching::json: JSON -> JSON: Comparing '"Test 1"' to '"Test 1"' using Equality -> Ok(())
+2024-01-13T09:48:58.540739Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_matching::json: compare_values: Comparing 'String("Test 1")' to 'String("Test 1")' at path '$.name' -> Ok(())
+2024-01-13T09:48:58.540741Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_matching::json: compare: Comparing path $.status
+2024-01-13T09:48:58.540743Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_matching::json: compare_values: Calling match_values for path $.status
+2024-01-13T09:48:58.540745Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_matching::json: JSON -> JSON: Comparing '0' to '0' using Equality -> Ok(())
+2024-01-13T09:48:58.540746Z DEBUG ThreadId(01) verify_interaction{interaction="a request for an order by ID"}: pact_matching::json: compare_values: Comparing 'Number(0)' to 'Number(0)' at path '$.status' -> Ok(())
+2024-01-13T09:48:58.545346Z DEBUG ThreadId(01) verify_interaction{interaction="a update for an order by ID"}: pact_verifier: Executing provider states
+2024-01-13T09:48:58.545360Z  INFO ThreadId(01) verify_interaction{interaction="a update for an order by ID"}: pact_verifier: Running setup provider state change handler 'an order with ID {id} exists' for 'a update for an order by ID'
+2024-01-13T09:48:58.549793Z DEBUG ThreadId(01) verify_interaction{interaction="a update for an order by ID"}: pact_verifier::provider_client: Sending HTTP Request ( method: POST, path: /, query: None, headers: Some({"Content-Type": ["application/json"]}), body: Present(75 bytes, application/json) ) to state change handler
+2024-01-13T09:48:58.549842Z DEBUG ThreadId(01) verify_interaction{interaction="a update for an order by ID"}: reqwest::connect: starting new connection: http://localhost:9001/    
+2024-01-13T09:48:58.550259Z DEBUG ThreadId(01) verify_interaction{interaction="a update for an order by ID"}: hyper::client::connect::http: connecting to [::1]:9001
+2024-01-13T09:48:58.550591Z DEBUG ThreadId(01) verify_interaction{interaction="a update for an order by ID"}: hyper::client::connect::http: connected to [::1]:9001
+2024-01-13T09:48:58.551307Z DEBUG ThreadId(01) verify_interaction{interaction="a update for an order by ID"}: hyper::client::pool: pooling idle connection for ("http", localhost:9001)
+2024-01-13T09:48:58.551327Z DEBUG ThreadId(01) verify_interaction{interaction="a update for an order by ID"}: pact_verifier::provider_client: State change request: Response { url: Url { scheme: "http", cannot_be_a_base: false, username: "", password: None, host: Some(Domain("localhost")), port: Some(9001), path: "/provider-states", query: None, fragment: None }, status: 200, headers: {"content-length": "0", "date": "Sat, 13 Jan 2024 09:48:58 GMT", "server": "Kestrel"} }
+2024-01-13T09:48:58.551366Z DEBUG ThreadId(01) verify_interaction{interaction="a update for an order by ID"}: pact_verifier: State Change: "ProviderState { name: "an order with ID {id} exists", params: {"id": Number(2)} }" -> Ok({})
+2024-01-13T09:48:58.551373Z  INFO ThreadId(01) verify_interaction{interaction="a update for an order by ID"}: pact_verifier: Running provider verification for 'a update for an order by ID'
+2024-01-13T09:48:58.551387Z DEBUG ThreadId(01) verify_interaction{interaction="a update for an order by ID"}: pact_verifier: Verifying a HTTP interaction
+2024-01-13T09:48:58.551416Z  INFO ThreadId(01) verify_interaction{interaction="a update for an order by ID"}: pact_verifier::provider_client: Sending request to provider at http://localhost:9001/
+2024-01-13T09:48:58.551418Z DEBUG ThreadId(01) verify_interaction{interaction="a update for an order by ID"}: pact_verifier::provider_client: Provider details = ProviderInfo { name: "Orders API", protocol: "http", host: "localhost", port: Some(9001), path: "/", transports: [ProviderTransport { transport: "http", port: Some(9001), path: Some("/"), scheme: None }] }
+2024-01-13T09:48:58.551422Z  INFO ThreadId(01) verify_interaction{interaction="a update for an order by ID"}: pact_verifier::provider_client: Sending request HTTP Request ( method: PUT, path: /api/orders/2, query: None, headers: Some({"Content-Type": ["application/json"], "Accept": ["application/json"]}), body: Present(12 bytes) )
+2024-01-13T09:48:58.551428Z DEBUG ThreadId(01) verify_interaction{interaction="a update for an order by ID"}: pact_verifier::provider_client: body:
+7B22737461747573223A317D (12 bytes)
+2024-01-13T09:48:58.551443Z DEBUG ThreadId(01) verify_interaction{interaction="a update for an order by ID"}: hyper::client::pool: reuse idle connection for ("http", localhost:9001)
+2024-01-13T09:48:58.563990Z DEBUG ThreadId(01) verify_interaction{interaction="a update for an order by ID"}: hyper::client::pool: pooling idle connection for ("http", localhost:9001)
+2024-01-13T09:48:58.564007Z DEBUG ThreadId(01) verify_interaction{interaction="a update for an order by ID"}: pact_verifier::provider_client: Received native response: Response { url: Url { scheme: "http", cannot_be_a_base: false, username: "", password: None, host: Some(Domain("localhost")), port: Some(9001), path: "/api/orders/2", query: None, fragment: None }, status: 202, headers: {"content-length": "0", "date": "Sat, 13 Jan 2024 09:48:58 GMT", "server": "Kestrel"} }
+2024-01-13T09:48:58.564029Z  INFO ThreadId(01) verify_interaction{interaction="a update for an order by ID"}: pact_verifier::provider_client: Received response: HTTP Response ( status: 202, headers: Some({"date": ["Sat", "13 Jan 2024 09:48:58 GMT"], "content-length": ["0"], "server": ["Kestrel"]}), body: Empty )
+2024-01-13T09:48:58.564033Z DEBUG ThreadId(01) verify_interaction{interaction="a update for an order by ID"}: pact_verifier::provider_client: body:
+
+2024-01-13T09:48:58.564042Z  INFO ThreadId(01) verify_interaction{interaction="a update for an order by ID"}: pact_matching: comparing to expected response: HTTP Response ( status: 202, headers: None, body: Missing )
+2024-01-13T09:48:58.564066Z DEBUG ThreadId(01) verify_interaction{interaction="a update for an order by ID"}: pact_matching: expected content type = '*/*', actual content type = '*/*'
+2024-01-13T09:48:58.564075Z DEBUG ThreadId(01) verify_interaction{interaction="a update for an order by ID"}: pact_matching: content type header matcher = 'RuleList { rules: [], rule_logic: And, cascaded: false }'
+2024-01-13T09:48:58.564220Z  WARN ThreadId(01) pact_matching::metrics: 
+
+Please note:
+We are tracking events anonymously to gather important usage statistics like Pact version and operating system. To disable tracking, set the 'PACT_DO_NOT_TRACK' environment variable to 'true'.
+
+
+2024-01-13T09:48:58.564290Z DEBUG ThreadId(01) pact_matching::metrics: Sending event to GA - {"ec": "ProviderTest", "cd7": "1.0.4", "tid": "UA-117778936-1", "an": "pact-net", "t": "event", "ds": "client", "cd2": "unknown", "cd6": "pact_ffi", "aip": "true", "el": "Pacts verified", "ea": "Completed", "aid": "pact-net", "ev": "4", "av": "4.5.0.0", "v": "1", "cd3": "windows-x86_64", "cid": "6ed937501e02436bd9dc1206d8dba8fa"}
+2024-01-13T09:48:58.570528Z DEBUG ThreadId(01) reqwest::connect: starting new connection: https://www.google-analytics.com/    
+2024-01-13T09:48:58.576875Z DEBUG ThreadId(01) hyper::client::connect::http: connecting to 142.250.203.206:443
+2024-01-13T09:48:58.587072Z DEBUG ThreadId(01) hyper::client::connect::http: connected to 142.250.203.206:443
+2024-01-13T09:48:58.587128Z DEBUG ThreadId(01) rustls::client::hs: No cached session for DnsName(DnsName(DnsName("www.google-analytics.com")))    
+2024-01-13T09:48:58.587409Z DEBUG ThreadId(01) rustls::client::hs: Not resuming any session    
+2024-01-13T09:48:58.613984Z DEBUG ThreadId(01) rustls::client::hs: Using ciphersuite TLS13_AES_256_GCM_SHA384    
+2024-01-13T09:48:58.614014Z DEBUG ThreadId(01) rustls::client::tls13: Not resuming    
+2024-01-13T09:48:58.614177Z DEBUG ThreadId(01) rustls::client::tls13: TLS1.3 encrypted extensions: [Protocols([6832])]    
+2024-01-13T09:48:58.614185Z DEBUG ThreadId(01) rustls::client::hs: ALPN protocol is Some(b"h2")    
+2024-01-13T09:48:58.614597Z DEBUG ThreadId(01) h2::client: binding client connection
+2024-01-13T09:48:58.614615Z DEBUG ThreadId(01) h2::client: client connection bound
+2024-01-13T09:48:58.614651Z DEBUG ThreadId(01) h2::codec::framed_write: send frame=Settings { flags: (0x0), enable_push: 0, initial_window_size: 2097152, max_frame_size: 16384 }
+2024-01-13T09:48:58.614874Z DEBUG ThreadId(01) hyper::client::pool: pooling idle connection for ("https", www.google-analytics.com)
+2024-01-13T09:48:58.652298Z DEBUG ThreadId(01) pact_plugin_driver::plugin_manager: Shutting down all plugins
+
